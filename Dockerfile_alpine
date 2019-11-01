@@ -1,0 +1,12 @@
+FROM hashicorp/terraform
+RUN apk add --no-cache \
+    python3 \
+    ansible \
+  && pip3 install --no-cache-dir --upgrade pip \
+  && rm -rf /var/cache/* \
+  && rm -rf /root/.cache/*
+
+RUN cd /usr/bin \
+  && ln -sf python3 python \
+  && ln -sf pip3 pip \
+  && pip install boto3
